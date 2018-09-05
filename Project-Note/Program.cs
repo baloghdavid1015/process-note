@@ -17,6 +17,7 @@ namespace Project_Note
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ProcessNote());
+            //commit
         }
     }
 }
