@@ -14,10 +14,11 @@ namespace Project_Note
     public partial class ProcessNote : Form
     {
         Process[] proc;
-
         public ProcessNote()
         {
             InitializeComponent();
+
+            
         }
                 
         void GetAllProcess()
@@ -29,9 +30,24 @@ namespace Project_Note
             {
                 ListViewItem item = new ListViewItem(p.ProcessName);
                 item.SubItems.Add(p.Id.ToString());
+                item.SubItems.Add(GetProcessRamUsage(p).ToString());
                 listView.Items.Add(item);
                
             }
+        }
+
+        float GetProcessRamUsage(Process process)
+        {
+            int memsize = 0; // memsize in Megabyte
+            PerformanceCounter PC = new PerformanceCounter();
+            PC.CategoryName = "Process";
+            PC.CounterName = "Working Set - Private";
+            PC.InstanceName = process.ProcessName;
+            memsize = Convert.ToInt32(PC.NextValue()) / (int)(1024);
+            PC.Close();
+            PC.Dispose();
+
+            return memsize / 1024;
         }
 
         private void ProcessNote_Load(object sender, EventArgs e)
@@ -58,5 +74,12 @@ namespace Project_Note
             }
 
         }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            GetAllProcess();
+        }
+
+
     }
 }
