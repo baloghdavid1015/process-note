@@ -13,27 +13,25 @@ namespace Project_Note
 {
     public partial class ProcessNote : Form
     {
+        Process[] proc;
+
         public ProcessNote()
         {
             InitializeComponent();
         }
-
-        Process[] proc;
-
+                
         void GetAllProcess()
         {
+            
             proc = Process.GetProcesses();
-            listBox.Items.Clear();
+            listView.Items.Clear();
             foreach(Process p in proc)
             {
-                listBox.Items.Add(p.ProcessName);
+                ListViewItem item = new ListViewItem(p.ProcessName);
+                item.SubItems.Add(p.Id.ToString());
+                listView.Items.Add(item);
                
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void ProcessNote_Load(object sender, EventArgs e)
@@ -41,8 +39,23 @@ namespace Project_Note
             GetAllProcess();
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnKillProcess_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                proc[listView.SelectedItems[0].Index].Kill();
+                listView.SelectedItems[0].Remove();
+                GetAllProcess();
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "oopss", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }
