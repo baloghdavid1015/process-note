@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,19 @@ namespace Project_Note
             InitializeComponent();
         }
 
+        Process[] proc;
+
+        void GetAllProcess()
+        {
+            proc = Process.GetProcesses();
+            listBox.Items.Clear();
+            foreach(Process p in proc)
+            {
+                listBox.Items.Add(p.ProcessName);
+               
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -24,7 +38,7 @@ namespace Project_Note
 
         private void ProcessNote_Load(object sender, EventArgs e)
         {
-
+            GetAllProcess();
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
