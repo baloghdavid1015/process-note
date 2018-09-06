@@ -30,24 +30,16 @@ namespace Project_Note
             {
                 ListViewItem item = new ListViewItem(p.ProcessName);
                 item.SubItems.Add(p.Id.ToString());
-                item.SubItems.Add(GetProcessRamUsage(p).ToString());
                 listView.Items.Add(item);
                
             }
         }
 
-        float GetProcessRamUsage(Process process)
-        {
-            int memsize = 0; // memsize in Megabyte
-            PerformanceCounter PC = new PerformanceCounter();
-            PC.CategoryName = "Process";
-            PC.CounterName = "Working Set - Private";
-            PC.InstanceName = process.ProcessName;
-            memsize = Convert.ToInt32(PC.NextValue()) / (int)(1024);
-            PC.Close();
-            PC.Dispose();
 
-            return memsize / 1024;
+        float GetProcessorUsage(Process process)
+        {
+            PerformanceCounter pct = new PerformanceCounter("Process", "% Processor Time", process.ProcessName, true);
+            return pct.NextValue();
         }
 
         private void ProcessNote_Load(object sender, EventArgs e)
@@ -80,6 +72,15 @@ namespace Project_Note
             GetAllProcess();
         }
 
+        private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            PopupForm pop = new PopupForm();
+            Process process = proc[listView.SelectedItems[0].Index];
+            pop.listProcess(process);
+            pop.Show();
+
+            
+        }
 
     }
 }

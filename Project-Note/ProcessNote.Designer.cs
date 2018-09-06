@@ -35,8 +35,6 @@
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderCPU = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderRAM = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +44,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(471, 24);
+            this.menuStrip.Size = new System.Drawing.Size(334, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -61,13 +59,13 @@
             // runNewTaskToolStripMenuItem
             // 
             this.runNewTaskToolStripMenuItem.Name = "runNewTaskToolStripMenuItem";
-            this.runNewTaskToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.runNewTaskToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.runNewTaskToolStripMenuItem.Text = "Run new task";
             // 
             // btnKillProcess
             // 
             this.btnKillProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnKillProcess.Location = new System.Drawing.Point(384, 398);
+            this.btnKillProcess.Location = new System.Drawing.Point(247, 398);
             this.btnKillProcess.Name = "btnKillProcess";
             this.btnKillProcess.Size = new System.Drawing.Size(75, 23);
             this.btnKillProcess.TabIndex = 3;
@@ -82,18 +80,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderName,
-            this.columnHeaderID,
-            this.columnHeaderCPU,
-            this.columnHeaderRAM});
+            this.columnHeaderID});
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
             this.listView.Location = new System.Drawing.Point(12, 27);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(447, 368);
+            this.listView.Size = new System.Drawing.Size(310, 368);
             this.listView.TabIndex = 7;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            this.listView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseDoubleClick);
             // 
             // columnHeaderName
             // 
@@ -103,21 +100,13 @@
             // columnHeaderID
             // 
             this.columnHeaderID.Text = "ID";
-            this.columnHeaderID.Width = 84;
-            // 
-            // columnHeaderCPU
-            // 
-            this.columnHeaderCPU.Text = "CPU usage";
-            // 
-            // columnHeaderRAM
-            // 
-            this.columnHeaderRAM.Text = "Ram usage";
+            this.columnHeaderID.Width = 86;
             // 
             // ProcessNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 433);
+            this.ClientSize = new System.Drawing.Size(334, 433);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.btnKillProcess);
             this.Controls.Add(this.menuStrip);
@@ -140,8 +129,6 @@
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader columnHeaderName;
         public System.Windows.Forms.ColumnHeader columnHeaderID;
-        private System.Windows.Forms.ColumnHeader columnHeaderCPU;
-        private System.Windows.Forms.ColumnHeader columnHeaderRAM;
     }
 }
 
