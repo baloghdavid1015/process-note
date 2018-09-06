@@ -21,7 +21,7 @@ namespace Project_Note
             
         }
                 
-        void GetAllProcess()
+        public void GetAllProcess()
         {
             
             proc = Process.GetProcesses();
@@ -74,12 +74,21 @@ namespace Project_Note
 
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            PopupForm pop = new PopupForm();
+            PopupForm pop = new PopupForm(this);
+            pop.Show();
             Process process = proc[listView.SelectedItems[0].Index];
             pop.listProcess(process);
-            pop.Show();
 
             
+        }
+
+        public void DeletFromList(Process process)
+        {
+            var list = proc.ToList();
+            list.Remove(process);
+            listView.SelectedItems[0].Remove();
+            proc = list.ToArray();
+            GetAllProcess();
         }
 
     }

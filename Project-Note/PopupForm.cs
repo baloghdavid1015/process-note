@@ -13,8 +13,11 @@ namespace Project_Note
 {
     public partial class PopupForm : Form
     {
-        public PopupForm()
+        Process process;
+        ProcessNote pn;
+        public PopupForm(ProcessNote pn)
         {
+            this.pn = pn;
             InitializeComponent();
         }
 
@@ -25,7 +28,7 @@ namespace Project_Note
 
         public void listProcess(Process process)
         {
-            listViewpopup.Clear();
+            this.process = process;
             ListViewItem item = new ListViewItem(process.ProcessName);
             item.SubItems.Add(String.Format("{0:0.00}", GetProcessRamUsage(process)));
             listViewpopup.Items.Add(item);
@@ -43,6 +46,13 @@ namespace Project_Note
             PC.Dispose();
 
             return memsize / 1024;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pn.DeletFromList(process);
+            process.Kill();
+            this.Close();
         }
     }
 }
