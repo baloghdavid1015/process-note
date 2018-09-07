@@ -16,11 +16,13 @@ namespace Project_Note
         Process process;
         ProcessNote pn;
         Timer _timer = new Timer();
+        PerformanceCounter pc;
         bool is_open = true;
 
         public PopupForm(ProcessNote pn, Process process)
         {
             this.pn = pn;
+            this.pc = new PerformanceCounter("Process", "% Processor Time", process.ProcessName, true);
             this.process = process;
             InitializeComponent();
             listView1.Text = process.ProcessName;
@@ -33,10 +35,8 @@ namespace Project_Note
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (is_open)
-            {
-                listView1.Items[0].SubItems[1].Text = String.Format("{0:0.00}", GetProcessRamUsage(process));
-            }
+            listView1.Items[0].SubItems[1].Text = String.Format("{0:0.00}", GetProcessRamUsage(process));
+            listView1.Items[0].SubItems[2].Text = String.Format("{0:0.00}", GetCpuUsage(process));
         }
 
         private void listViewpopup_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,13 +48,13 @@ namespace Project_Note
         {
             ListViewItem item = new ListViewItem(process.ProcessName);
             item.SubItems.Add(String.Format("{0:0.00}", GetProcessRamUsage(process)));
-            //item.SubItems.Add(String.Format("{0:0.00}", GetCpuUsage(process)));
+            item.SubItems.Add(String.Format("{0:0.00}", GetCpuUsage(process)));
             listView1.Items.Add(item);
         }
 
-        private object GetCpuUsage(Process process)
+        private float GetCpuUsage(Process process)
         {
-            throw new NotImplementedException();
+            return pc.NextValue();
         }
 
         float GetProcessRamUsage(Process process)
@@ -83,9 +83,8 @@ namespace Project_Note
 
         }
 
-        private void PopupForm_Leave(object sender, EventArgs e)
+        private void PopupForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.is_open = false;
             _timer.Enabled = false;
             _timer.Stop();
         }

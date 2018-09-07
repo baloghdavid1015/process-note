@@ -31,8 +31,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeaderpopupname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderpopupram = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
             this.columnHeadercpu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -60,6 +60,11 @@
             // 
             this.columnHeaderpopupram.Text = "Ram (mb)";
             // 
+            // columnHeadercpu
+            // 
+            this.columnHeadercpu.Text = "Cpu (%)";
+            this.columnHeadercpu.Width = 73;
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -70,11 +75,6 @@
             this.button1.Text = "stop task";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // columnHeadercpu
-            // 
-            this.columnHeadercpu.Text = "Cpu (%)";
-            this.columnHeadercpu.Width = 73;
-            // 
             // PopupForm
             // 
             this.ClientSize = new System.Drawing.Size(357, 101);
@@ -82,7 +82,7 @@
             this.Controls.Add(this.listView1);
             this.Name = "PopupForm";
             this.Text = "Window";
-            this.Leave += new System.EventHandler(this.PopupForm_Leave);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PopupForm_FormClosing);
             this.ResumeLayout(false);
 
         }
