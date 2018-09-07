@@ -75,8 +75,8 @@ namespace Project_Note
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Process process = proc[listView.SelectedItems[0].Index];
-            PopupForm pop = new PopupForm(this, process.ProcessName);
-            pop.listProcess(process);
+            PopupForm pop = new PopupForm(this, process);
+            pop.listProcess();
             pop.Show();
 
 

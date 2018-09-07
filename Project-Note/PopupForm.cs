@@ -15,10 +15,28 @@ namespace Project_Note
     {
         Process process;
         ProcessNote pn;
-        public PopupForm(ProcessNote pn, string app_name)
+        Timer _timer = new Timer();
+        bool is_open = true;
+
+        public PopupForm(ProcessNote pn, Process process)
         {
             this.pn = pn;
-            InitializeComponent(app_name);
+            this.process = process;
+            InitializeComponent();
+            listView1.Text = process.ProcessName;
+            _timer.Tick += new EventHandler(timer_Tick);
+            _timer.Interval = 1000;
+            _timer.Enabled = true;
+            _timer.Start();
+            
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (is_open)
+            {
+                listView1.Items[0].SubItems[1].Text = String.Format("{0:0.00}", GetProcessRamUsage(process));
+            }
         }
 
         private void listViewpopup_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,12 +44,17 @@ namespace Project_Note
 
         }
 
-        public void listProcess(Process process)
+        public void listProcess()
         {
-            this.process = process;
             ListViewItem item = new ListViewItem(process.ProcessName);
             item.SubItems.Add(String.Format("{0:0.00}", GetProcessRamUsage(process)));
-            listViewpopup.Items.Add(item);
+            //item.SubItems.Add(String.Format("{0:0.00}", GetCpuUsage(process)));
+            listView1.Items.Add(item);
+        }
+
+        private object GetCpuUsage(Process process)
+        {
+            throw new NotImplementedException();
         }
 
         float GetProcessRamUsage(Process process)
@@ -53,6 +76,18 @@ namespace Project_Note
             pn.DeletFromList(process);
             process.Kill();
             this.Close();
+        }
+
+        private void PopupForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PopupForm_Leave(object sender, EventArgs e)
+        {
+            this.is_open = false;
+            _timer.Enabled = false;
+            _timer.Stop();
         }
     }
 }
