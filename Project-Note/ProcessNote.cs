@@ -74,12 +74,12 @@ namespace Project_Note
 
         private void listView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            PopupForm pop = new PopupForm(this);
-            pop.Show();
             Process process = proc[listView.SelectedItems[0].Index];
+            PopupForm pop = new PopupForm(this, process.ProcessName);
             pop.listProcess(process);
+            pop.Show();
 
-            
+
         }
 
         public void DeletFromList(Process process)

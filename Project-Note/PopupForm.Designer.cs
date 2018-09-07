@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(string value)
         {
             this.button1 = new System.Windows.Forms.Button();
             this.columnHeaderpopupname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -36,7 +36,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(253, 415);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(241, 78);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -56,14 +57,17 @@
             // 
             // listViewpopup
             // 
+            this.listViewpopup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewpopup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderpopupname,
             this.columnHeaderpopupRam});
             this.listViewpopup.FullRowSelect = true;
             this.listViewpopup.GridLines = true;
-            this.listViewpopup.Location = new System.Drawing.Point(12, 32);
+            this.listViewpopup.Location = new System.Drawing.Point(12, 12);
             this.listViewpopup.Name = "listViewpopup";
-            this.listViewpopup.Size = new System.Drawing.Size(338, 364);
+            this.listViewpopup.Size = new System.Drawing.Size(304, 60);
             this.listViewpopup.TabIndex = 0;
             this.listViewpopup.UseCompatibleStateImageBehavior = false;
             this.listViewpopup.View = System.Windows.Forms.View.Details;
@@ -73,11 +77,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 450);
+            this.ClientSize = new System.Drawing.Size(332, 113);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listViewpopup);
             this.Name = "PopupForm";
-            this.Text = "PopupForm";
+            this.Text = value;
             this.ResumeLayout(false);
 
         }

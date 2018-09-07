@@ -15,10 +15,10 @@ namespace Project_Note
     {
         Process process;
         ProcessNote pn;
-        public PopupForm(ProcessNote pn)
+        public PopupForm(ProcessNote pn, string app_name)
         {
             this.pn = pn;
-            InitializeComponent();
+            InitializeComponent(app_name);
         }
 
         private void listViewpopup_SelectedIndexChanged(object sender, EventArgs e)
